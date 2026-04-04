@@ -1,0 +1,13 @@
+[Unit]
+Description=Load MPD radio playlist on boot
+After=mpd.service
+Requires=mpd.service
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/sleep 2
+ExecStart=/bin/sh -c "mpc clear && mpc load radio && mpc play && mpc volume 50"
+User=marshall
+
+[Install]
+WantedBy=multi-user.target
